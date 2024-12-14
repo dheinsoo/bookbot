@@ -4,8 +4,11 @@ def main():
     num_words = get_num_words(text)
     print(f"{num_words} words found in the document")
     letters = get_num_letters(text)
+    letter_list = convert_dict(letters)
+    #sorting letter list
+    letter_list.sort(reverse=True, key=sort_occurences)
     print(f'These letters are used:')
-    print(letters)
+    nice_print(letter_list)
 
 
 def get_num_words(text):
@@ -37,10 +40,12 @@ def convert_dict(dict):
         new_dict["count"] = dict[key]
         list.append(new_dict)
         
-    return new_dict
+    return list
 
 
-
+def nice_print(mylist):
+    for mydict in mylist:
+        print(f'The letter {mydict["char"]} is found {mydict["count"]} times')
 
 def sort_occurences(dict):
     return dict["count"]
